@@ -222,15 +222,7 @@ def update_screen():
     global input_text_3_2
     global input_text_3_3
     global out
-    print(input_text_1_1)
-    print(input_text_1_2)
-    print(input_text_1_3)
-    print(input_text_2_1)
-    print(input_text_2_2)
-    print(input_text_2_3)
-    print(input_text_3_1)
-    print(input_text_3_2)
-    print(input_text_3_3)
+
     print("Update screen")
     screen_1_1 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_1_1, borderwidth=0, background="white", justify="right").grid(row=2, column=0, padx=20, pady=20)
     screen_1_2 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_1_2, borderwidth=0, background="white", justify="right").grid(row=3, column=0, padx=20, pady=20)
@@ -246,12 +238,148 @@ def update_screen():
 
     _output_text = Entry(window, font=("arial",15), width=50, textvariable=out, borderwidth=3, background="white").place(x=30, y=500)
 
+def processor(letter):
+
+    global number_of_letter_1
+    global number_of_letter_2
+    global number_of_letter_3
+    global out
+    global _out
+    global counter_invalid_letter
+    global input_text_1_1
+    global input_text_1_2
+    global input_text_1_3
+    global input_text_2_1
+    global input_text_2_2
+    global input_text_2_3
+    global input_text_3_1
+    global input_text_3_2
+    global input_text_3_3
+
+    if letter in alphabet:
+        _position_alpha = number_of_letter_3
+        _position_beta = number_of_letter_2
+        _position_reflector = number_of_letter_1
+
+        _letter = int(letter_to_number(source=alphabet, letter=letter))
+        _letter -= _position_alpha
+        _letter += 1
+        if _letter > 82: _letter -= 82
+        elif _letter < 1: _letter += 82
+
+        a = number_to_letter(source=_alpha_rotor_external, number=_letter)
+                    
+        b = int(letter_to_number(source=_alpha_rotor_internal, letter=a))
+
+        b += _position_alpha
+        b -= _position_beta
+        if b > 82: b -= 82
+        elif b < 1: b += 82
+
+        c = number_to_letter(source=_beta_rotor_external, number=b)
+
+        d = int(letter_to_number(source=_beta_rotor_internal, letter=c))
+
+        d += _position_beta
+        d -= _position_reflector
+        if d > 82: d -= 82
+        elif d < 1: d += 82
+
+        e = number_to_letter(source=_reflector_rotor_external, number=d)
+
+        f = int(letter_to_number(source=_reflector_rotor_internal, letter=e))
+
+        f -= _position_beta
+        f += _position_reflector
+        if f > 82: f -= 82
+        elif f < 1: f += 82
+
+        g = number_to_letter(source=_beta_rotor_internal, number=f)
+
+        h = int(letter_to_number(source=_beta_rotor_external, letter=g))
+
+        h -=_position_alpha
+        h +=_position_beta
+        if h > 82: h -= 82
+        elif h < 1: h += 82
+
+        i = number_to_letter(source=_alpha_rotor_internal, number=h)
+
+        j = int(letter_to_number(source=_alpha_rotor_external, letter=i))
+
+        j -= 1
+        j += _position_alpha
+        if j > 82: j -= 82
+        elif j < 1: j += 82
+
+        if print_all_variables:
+            print("\n")
+
+            print("number_of_letter_1: " + str(number_of_letter_1))
+            print("number_of_letter_2: " + str(number_of_letter_2))
+            print("number_of_letter_3: " + str(number_of_letter_3))
+
+            print("Position alpha: " + str(_position_alpha))
+            print("Position beta: " + str(_position_beta)) 
+            print("Position reflector: " + str(_position_reflector))
+
+            print("a: " + str(a))
+            print("b: " + str(b))
+            print("c: " + str(c))
+            print("d: " + str(d))
+            print("e: " + str(e))
+            print("f: " + str(f))
+            print("g: " + str(g))
+            print("h: " + str(h))
+            print("i: " + str(i))
+            print("j: " + str(j))
+
+            print("3: " + str(number_of_letter_3))
+            print("2: " + str(number_of_letter_2))
+            print("1: " + str(number_of_letter_1))
+
+        number_of_letter_3_memory = number_of_letter_3
+        number_of_letter_2_memory = number_of_letter_2
+        number_of_letter_1_memory = number_of_letter_1
+
+        letter_up(button=3)
+        if number_of_letter_3_memory > 26: letter_up(button=2)
+                    
+        if number_of_letter_2_memory > 26: letter_up(button=1)
+        if number_of_letter_1_memory > 26:
+            number_of_letter_1 = 1
+            number_of_letter_2 = 1
+            number_of_letter_3 = 1
+
+        _out += number_to_letter(source=alphabet, number=j)
+        out.set(value = (_out))
+
+    else: 
+        counter_invalid_letter += 1
+        error_text = '"' + str(letter) + '"' + " is not in the alphabet."
+        _position_entry_error += 1
+        listbox.insert(_position_entry_error, error_text)
+        
+    screen_1_1 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_1_1, borderwidth=0, background="white", justify="right").grid(row=2, column=0, padx=20, pady=20)
+    screen_1_2 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_1_2, borderwidth=0, background="white", justify="right").grid(row=3, column=0, padx=20, pady=20)
+    screen_1_3 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_1_3, borderwidth=0, background="white", justify="right").grid(row=4, column=0, padx=20, pady=20)
+
+    screen_2_1 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_2_1, borderwidth=0, background="white", justify="right").grid(row=2, column=1, padx=20, pady=20)
+    screen_2_2 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_2_2, borderwidth=0, background="white", justify="right").grid(row=3, column=1, padx=20, pady=20)
+    screen_2_3 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_2_3, borderwidth=0, background="white", justify="right").grid(row=4, column=1, padx=20, pady=20)
+
+    screen_3_1 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_3_1, borderwidth=0, background="white", justify="right").grid(row=2, column=2, padx=20, pady=20)
+    screen_3_2 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_3_2, borderwidth=0, background="white", justify="right").grid(row=3, column=2, padx=20, pady=20)
+    screen_3_3 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_3_3, borderwidth=0, background="white", justify="right").grid(row=4, column=2, padx=20, pady=20)
+    sleep(1)
+
 def encript():
     
     global number_of_letter_1
     global number_of_letter_2
     global number_of_letter_3
     global out
+    global _out
     global counter_invalid_letter
 
     _input = _input_text.get()
@@ -260,122 +388,17 @@ def encript():
     _out = ""
     _out += number_to_letter(source=alphabet, number=number_of_letter_1) + " " + number_to_letter(source=alphabet, number=number_of_letter_2) + " " + number_to_letter(source=alphabet, number=number_of_letter_3) + " "
     for letter in _input:
-        if letter in alphabet:
-            _position_alpha = number_of_letter_3
-            _position_beta = number_of_letter_2
-            _position_reflector = number_of_letter_1
-
-            _letter = int(letter_to_number(source=alphabet, letter=letter))
-            _letter -= _position_alpha
-            _letter += 1
-            if _letter > 82: _letter -= 82
-            elif _letter < 1: _letter += 82
-
-            a = number_to_letter(source=_alpha_rotor_external, number=_letter)
-            
-            b = int(letter_to_number(source=_alpha_rotor_internal, letter=a))
-
-            b += _position_alpha
-            b -= _position_beta
-            if b > 82: b -= 82
-            elif b < 1: b += 82
-
-            c = number_to_letter(source=_beta_rotor_external, number=b)
-
-            d = int(letter_to_number(source=_beta_rotor_internal, letter=c))
-
-            d += _position_beta
-            d -= _position_reflector
-            if d > 82: d -= 82
-            elif d < 1: d += 82
-
-            e = number_to_letter(source=_reflector_rotor_external, number=d)
-
-            f = int(letter_to_number(source=_reflector_rotor_internal, letter=e))
-
-            f-=_position_beta
-            f+=_position_reflector
-            if f > 82: f -= 82
-            elif f < 1: f += 82
-
-            g = number_to_letter(source=_beta_rotor_internal, number=f)
-
-            h = int(letter_to_number(source=_beta_rotor_external, letter=g))
-
-            h -=_position_alpha
-            h +=_position_beta
-            if h > 82: h -= 82
-            elif h < 1: h += 82
-
-            i = number_to_letter(source=_alpha_rotor_internal, number=h)
-
-            j = int(letter_to_number(source=_alpha_rotor_external, letter=i))
-
-            j -= 1
-            j += _position_alpha
-            if j > 82: j -= 82
-            elif j < 1: j += 82
-
-            if print_all_variables:
-                print("\n")
-
-                print("number_of_letter_1: " + str(number_of_letter_1))
-                print("number_of_letter_2: " + str(number_of_letter_2))
-                print("number_of_letter_3: " + str(number_of_letter_3))
-
-                print("Position alpha: " + str(_position_alpha))
-                print("Position beta: " + str(_position_beta)) 
-                print("Position reflector: " + str(_position_reflector))
-
-                print("a: " + str(a))
-                print("b: " + str(b))
-                print("c: " + str(c))
-                print("d: " + str(d))
-                print("e: " + str(e))
-                print("f: " + str(f))
-                print("g: " + str(g))
-                print("h: " + str(h))
-                print("i: " + str(i))
-                print("j: " + str(j))
-
-                print("3: " + str(number_of_letter_3))
-                print("2: " + str(number_of_letter_2))
-                print("1: " + str(number_of_letter_1))
-
-            number_of_letter_3_memory = number_of_letter_3
-            number_of_letter_2_memory = number_of_letter_2
-            number_of_letter_1_memory = number_of_letter_1
-
-            letter_up(button=3)
-            if number_of_letter_3_memory > 26:
-                letter_up(button=2)
-            
-            if number_of_letter_2_memory > 26: letter_up(button=1)
-            if number_of_letter_1_memory > 26:
-                number_of_letter_1 = 1
-                number_of_letter_2 = 1
-                number_of_letter_3 = 1
-
-            _out += number_to_letter(source=alphabet, number=j)
-            out.set(value = (_out))
-
-        else: 
-            counter_invalid_letter += 1
-            error_text = '"' + str(letter) + '"' + " is not in the alphabet."
-            _position_entry_error += 1
-            listbox.insert(_position_entry_error, error_text)
-        update_screen()
-        sleep(1)
+        processor(letter=letter)
         
-frm_1 = Frame(window, bg="black", height=244, width=73)
+frm_1 = Frame(window, bg="white", height=244, width=73)
 frm_1.place(x=13, y=65)
 set_mousewheel(frm_1, lambda e: letter_up(button=1))
 
-frm_1 = Frame(window, bg="black", height=244, width=73)
+frm_1 = Frame(window, bg="white", height=244, width=73)
 frm_1.place(x=112, y=65)
 set_mousewheel(frm_1, lambda e: letter_up(button=2))
 
-frm_1 = Frame(window, bg="black", height=244, width=73)
+frm_1 = Frame(window, bg="white", height=244, width=73)
 frm_1.place(x=211, y=65)
 set_mousewheel(frm_1, lambda e: letter_up(button=3))
 
