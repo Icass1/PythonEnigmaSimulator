@@ -1,12 +1,12 @@
 from tkinter import *
 from time import sleep
 
-print_all_variables = False
+print_all_variables = True
 
 window = Tk()
 
 window.title("Enigma")
-window.geometry("800x560")
+window.geometry("650x560")
 window.resizable(True,True)
 window.configure(background="white")
 
@@ -31,6 +31,8 @@ input_text_2_3 = StringVar()
 input_text_3_1 = StringVar()
 input_text_3_2 = StringVar()
 input_text_3_3 = StringVar()
+
+error_text = StringVar()
 
 out = StringVar() 
 
@@ -301,14 +303,29 @@ def number_to_letter_display(number):
     out = alphabet_for_position_rotor[number]
     return out
 
+def reset():
+    global number_of_letter_1
+    global number_of_letter_2
+    global number_of_letter_3
+    global label
+
+    number_of_letter_1 = 0
+    number_of_letter_2 = 0
+    number_of_letter_3 = 0
+    letter_up(button=1)
+    letter_up(button=2)
+    letter_up(button=3)
+    label.destroy()
+
 def encript():
-    
+    global label
     global number_of_letter_1
     global number_of_letter_2
     global number_of_letter_3
     global out
 
     _input = _input_text.get()
+    _position_entry_error = 0
 
     _out = ""
     _out += number_to_letter(number_of_letter_1) + " " + number_to_letter(number_of_letter_2) + " " + number_to_letter(number_of_letter_3) + " "
@@ -391,9 +408,10 @@ def encript():
             if j > 82: j -= 82
             elif j < 1: j += 82
 
-            print("3: " + str(number_of_letter_3))
-            print("2: " + str(number_of_letter_2))
-            print("1: " + str(number_of_letter_1))
+            if print_all_variables:
+                print("3: " + str(number_of_letter_3))
+                print("2: " + str(number_of_letter_2))
+                print("1: " + str(number_of_letter_1))
 
             number_of_letter_3_memory = number_of_letter_3
             number_of_letter_2_memory = number_of_letter_2
@@ -408,22 +426,18 @@ def encript():
                 number_of_letter_1 = 1
                 number_of_letter_2 = 1
                 number_of_letter_3 = 1
-
+            
+            
             _out += number_to_letter(number=j)
-            value=(_out)
-            out.set(value=value)
-        else: print('"' + str(letter) + '"' + " is not in the alphabet.")
+            out.set(value = (_out))
 
-def reset():
-    global number_of_letter_1
-    global number_of_letter_2
-    global number_of_letter_3
-    number_of_letter_1 = 0
-    number_of_letter_2 = 0
-    number_of_letter_3 = 0
-    letter_up(button=1)
-    letter_up(button=2)
-    letter_up(button=3)
+        else: 
+            error_text = '"' + str(letter) + '"' + " is not in the alphabet."
+            _position_entry_error += 25
+            label = Label(window, text=error_text)
+            label.place(x=475, y=_position_entry_error)
+
+
 
 letter_up(button=1)
 letter_up(button=2)
@@ -439,40 +453,28 @@ button_up_3 = Button(window, text="UP", bg=color_boton, fg=cn, activebackground=
 button_down_3 = Button(window, text="DOWN", bg=color_boton, fg=cn, activebackground=actb, width=ancho_boton, height=alto_boton, command=lambda:letter_down(button=3), cursor="hand2").grid(row=5, column=2 , padx=13, pady=10)
 
 
-screen_1_1 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_1_1, borderwidth=0, background="white", justify="right")
-screen_1_2 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_1_2, borderwidth=0, background="white", justify="right")
-screen_1_3 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_1_3, borderwidth=0, background="white", justify="right")
+screen_1_1 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_1_1, borderwidth=0, background="white", justify="right").grid(row=2, column=0, padx=20, pady=20)
+screen_1_2 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_1_2, borderwidth=0, background="white", justify="right").grid(row=3, column=0, padx=20, pady=20)
+screen_1_3 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_1_3, borderwidth=0, background="white", justify="right").grid(row=4, column=0, padx=20, pady=20)
 
-screen_2_1 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_2_1, borderwidth=0, background="white", justify="right")
-screen_2_2 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_2_2, borderwidth=0, background="white", justify="right")
-screen_2_3 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_2_3, borderwidth=0, background="white", justify="right")
+screen_2_1 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_2_1, borderwidth=0, background="white", justify="right").grid(row=2, column=1, padx=20, pady=20)
+screen_2_2 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_2_2, borderwidth=0, background="white", justify="right").grid(row=3, column=1, padx=20, pady=20)
+screen_2_3 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_2_3, borderwidth=0, background="white", justify="right").grid(row=4, column=1, padx=20, pady=20)
 
-screen_3_1 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_3_1, borderwidth=0, background="white", justify="right")
-screen_3_2 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_3_2, borderwidth=0, background="white", justify="right")
-screen_3_3 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_3_3, borderwidth=0, background="white", justify="right")
-
-
-screen_1_1.grid(row=2, column=0, padx=20, pady=20)
-screen_1_2.grid(row=3, column=0, padx=20, pady=20)
-screen_1_3.grid(row=4, column=0, padx=20, pady=20)
-
-screen_2_1.grid(row=2, column=1, padx=20, pady=20)
-screen_2_2.grid(row=3, column=1, padx=20, pady=20)
-screen_2_3.grid(row=4, column=1, padx=20, pady=20)
-
-screen_3_1.grid(row=2, column=2, padx=20, pady=20)
-screen_3_2.grid(row=3, column=2, padx=20, pady=20)
-screen_3_3.grid(row=4, column=2, padx=20, pady=20)
-
+screen_3_1 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_3_1, borderwidth=0, background="white", justify="right").grid(row=2, column=2, padx=20, pady=20)
+screen_3_2 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_3_2, borderwidth=0, background="white", justify="right").grid(row=3, column=2, padx=20, pady=20)
+screen_3_3 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_3_3, borderwidth=0, background="white", justify="right").grid(row=4, column=2, padx=20, pady=20)
 
 _input_text = Entry(window, font=("arial",15), width=50, textvariable="", borderwidth=3, background="white")
 _input_text.place(x=30, y=400)
+
+_output_text = Entry(window, font=("arial",15), width=50, textvariable=out, borderwidth=3, background="white").place(x=30, y=500)
 
 button_encript = Button(window, text="Encript", bg=color_boton, fg=cn, activebackground=actb, width=ancho_boton, height=alto_boton, command=lambda:encript(), cursor="hand2").place(x=30, y=435)
 
 button_reset = Button(window, text="Reset", bg=color_boton, fg=cn, activebackground=actb, width=ancho_boton, height=alto_boton, command=lambda:reset(), cursor="hand2").place(x=350, y=160)
 
-_output_text = Entry(window, font=("arial",15), width=50, textvariable=out, borderwidth=3, background="white")
-_output_text.place(x=30, y=500)
+# error = Entry(window, font=("arial",10,"bold"), width=30, textvariable=error_text, borderwidth=1, background="white", justify="left").place(x=350, y=250)
+
 
 window.mainloop()
