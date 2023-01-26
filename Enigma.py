@@ -16,7 +16,6 @@ actb="gray75"
 ancho_boton=9
 alto_boton=3
 
-# 
 number_of_letter_1 = 1
 number_of_letter_2 = 1
 number_of_letter_3 = 1
@@ -197,7 +196,6 @@ def reset():
     global number_of_letter_1
     global number_of_letter_2
     global number_of_letter_3
-    global label
     global counter_invalid_letter
 
     number_of_letter_1 = 0
@@ -212,9 +210,44 @@ def reset():
         listbox.delete(0)
     counter_invalid_letter = 0
 
+def update_screen():
+
+    global input_text_1_1
+    global input_text_1_2
+    global input_text_1_3
+    global input_text_2_1
+    global input_text_2_2
+    global input_text_2_3
+    global input_text_3_1
+    global input_text_3_2
+    global input_text_3_3
+    global out
+    print(input_text_1_1)
+    print(input_text_1_2)
+    print(input_text_1_3)
+    print(input_text_2_1)
+    print(input_text_2_2)
+    print(input_text_2_3)
+    print(input_text_3_1)
+    print(input_text_3_2)
+    print(input_text_3_3)
+    print("Update screen")
+    screen_1_1 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_1_1, borderwidth=0, background="white", justify="right").grid(row=2, column=0, padx=20, pady=20)
+    screen_1_2 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_1_2, borderwidth=0, background="white", justify="right").grid(row=3, column=0, padx=20, pady=20)
+    screen_1_3 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_1_3, borderwidth=0, background="white", justify="right").grid(row=4, column=0, padx=20, pady=20)
+
+    screen_2_1 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_2_1, borderwidth=0, background="white", justify="right").grid(row=2, column=1, padx=20, pady=20)
+    screen_2_2 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_2_2, borderwidth=0, background="white", justify="right").grid(row=3, column=1, padx=20, pady=20)
+    screen_2_3 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_2_3, borderwidth=0, background="white", justify="right").grid(row=4, column=1, padx=20, pady=20)
+
+    screen_3_1 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_3_1, borderwidth=0, background="white", justify="right").grid(row=2, column=2, padx=20, pady=20)
+    screen_3_2 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_3_2, borderwidth=0, background="white", justify="right").grid(row=3, column=2, padx=20, pady=20)
+    screen_3_3 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_3_3, borderwidth=0, background="white", justify="right").grid(row=4, column=2, padx=20, pady=20)
+
+    _output_text = Entry(window, font=("arial",15), width=50, textvariable=out, borderwidth=3, background="white").place(x=30, y=500)
+
 def encript():
     
-    global label
     global number_of_letter_1
     global number_of_letter_2
     global number_of_letter_3
@@ -331,18 +364,20 @@ def encript():
             error_text = '"' + str(letter) + '"' + " is not in the alphabet."
             _position_entry_error += 1
             listbox.insert(_position_entry_error, error_text)
-
-frm_1 = Frame(window, bg="white", height=244, width=73)
+        update_screen()
+        sleep(1)
+        
+frm_1 = Frame(window, bg="black", height=244, width=73)
 frm_1.place(x=13, y=65)
-set_mousewheel(widget=frm_1, command=lambda e: letter_up(button=1))
+set_mousewheel(frm_1, lambda e: letter_up(button=1))
 
-frm_2 = Frame(window, bg="white", height=244, width=73)
-frm_2.place(x=112, y=65)
-set_mousewheel(frm_2, lambda e: letter_up(button=2))
+frm_1 = Frame(window, bg="black", height=244, width=73)
+frm_1.place(x=112, y=65)
+set_mousewheel(frm_1, lambda e: letter_up(button=2))
 
-frm_2 = Frame(window, bg="white", height=244, width=73)
-frm_2.place(x=211, y=65)
-set_mousewheel(frm_2, lambda e: letter_up(button=3))
+frm_1 = Frame(window, bg="black", height=244, width=73)
+frm_1.place(x=211, y=65)
+set_mousewheel(frm_1, lambda e: letter_up(button=3))
 
 input_text_1_1.set("B")
 input_text_1_2.set("A")
@@ -354,6 +389,8 @@ input_text_3_1.set("B")
 input_text_3_2.set("A")
 input_text_3_3.set("Z")
 
+update_screen()
+
 button_up_1 = Button(window,text="UP",bg=color_boton,fg=cn,activebackground=actb,width=ancho_boton,height=alto_boton, command=lambda:letter_up(button=1),cursor="hand2").grid(row=1, column=0, padx=13, pady=10)
 button_down_1 = Button(window,text="DOWN",bg=color_boton,fg=cn,activebackground=actb,width=ancho_boton,height=alto_boton, command=lambda:letter_down(button=1),cursor="hand2").grid(row=5, column=0, padx=13, pady=10)
 
@@ -363,22 +400,8 @@ button_down_2 = Button(window, text="DOWN", bg=color_boton, fg=cn, activebackgro
 button_up_3 = Button(window, text="UP", bg=color_boton, fg=cn, activebackground=actb, width=ancho_boton, height=alto_boton, command=lambda:letter_up(button=3), cursor="hand2").grid(row=1, column=2, padx=13, pady=10)
 button_down_3 = Button(window, text="DOWN", bg=color_boton, fg=cn, activebackground=actb, width=ancho_boton, height=alto_boton, command=lambda:letter_down(button=3), cursor="hand2").grid(row=5, column=2 , padx=13, pady=10)
 
-screen_1_1 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_1_1, borderwidth=0, background="white", justify="right").grid(row=2, column=0, padx=20, pady=20)
-screen_1_2 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_1_2, borderwidth=0, background="white", justify="right").grid(row=3, column=0, padx=20, pady=20)
-screen_1_3 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_1_3, borderwidth=0, background="white", justify="right").grid(row=4, column=0, padx=20, pady=20)
-
-screen_2_1 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_2_1, borderwidth=0, background="white", justify="right").grid(row=2, column=1, padx=20, pady=20)
-screen_2_2 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_2_2, borderwidth=0, background="white", justify="right").grid(row=3, column=1, padx=20, pady=20)
-screen_2_3 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_2_3, borderwidth=0, background="white", justify="right").grid(row=4, column=1, padx=20, pady=20)
-
-screen_3_1 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_3_1, borderwidth=0, background="white", justify="right").grid(row=2, column=2, padx=20, pady=20)
-screen_3_2 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_3_2, borderwidth=0, background="white", justify="right").grid(row=3, column=2, padx=20, pady=20)
-screen_3_3 = Entry(window, font=("arial",20,"bold"), width=2, textvariable=input_text_3_3, borderwidth=0, background="white", justify="right").grid(row=4, column=2, padx=20, pady=20)
-
 _input_text = Entry(window, font=("arial",15), width=50, textvariable="", borderwidth=3, background="white")
 _input_text.place(x=30, y=400)
-
-_output_text = Entry(window, font=("arial",15), width=50, textvariable=out, borderwidth=3, background="white").place(x=30, y=500)
 
 button_encript = Button(window, text="Encript", bg=color_boton, fg=cn, activebackground=actb, width=ancho_boton, height=alto_boton, command=lambda:encript(), cursor="hand2").place(x=30, y=435)
 
