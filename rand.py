@@ -32,16 +32,17 @@ def _pop(index, list):
     return _out
 
 def check(list):
-    valores = list
-    repetido = []
-    unico = []
-    for x in valores:
-        if x not in unico:
-            unico.append(x)
+    values = list
+    repeated = []
+    single = []
+    for x in values:
+        if x not in single:
+            single.append(x)
         else:
-            if x not in repetido:
-                repetido.append(x)
-    print("Repetido: {}".format(repetido))
+            if x not in repeated:
+                repeated.append(x)
+    print("Repeated: {}".format(repeated))
+
 def generate_pairs(alphabet):
     global list_pairs
     _list = alphabet
@@ -89,14 +90,12 @@ def create_lists(alphabet):
 
     for k in range(1, rotors):
         print("_rotor_{}_external =         {}".format(k, str(alphabet)))
-        print("")
         shuffle(alphabet)
         print("_rotor_{}_internal =         {}".format(k, str(alphabet)))
         print("")
         shuffle(alphabet)
 
     print("_rotor_reflector_external = {}".format(str(list_1)))
-    print("")
     print("_rotor_reflector_internal = {}".format(str(list_2)))
 
     print("")
@@ -131,14 +130,12 @@ def create_lists(alphabet):
 
         for k in range(1, rotors):
             file.write("_rotor_{}_external =         {}\n".format(k, str(alphabet)))
-            file.write("\n")
             shuffle(alphabet)
             file.write("_rotor_{}_internal =         {}\n".format(k, str(alphabet)))
             file.write("\n")
             shuffle(alphabet)
 
         file.write("_rotor_reflector_external = {}\n".format(str(list_1)))
-        file.write("\n")
         file.write("_rotor_reflector_internal = {}\n".format(str(list_2)))
 
         file.write("\n")
@@ -153,4 +150,4 @@ def create_lists(alphabet):
         file.write("sources.append(_rotor_reflector_internal)\n")
         file.close()
         
-create_lists(alphabet=alphabet)
+create_lists(alphabet=long_alphabet)
