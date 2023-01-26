@@ -1,7 +1,7 @@
 from random import randrange
 import time
 
-from _rotors import get_sources
+from rotors import get_sources
 
 counter_invalid_letter = 0
 
@@ -13,8 +13,6 @@ start_encript = []
 
 sources = get_sources()
 alphabet = sources[0]
-
-print(len(alphabet))
 
 # Returns the letter that is in the posiiton of number in source.
 def number_to_letter(source, number):
@@ -29,7 +27,6 @@ def encript(message):
     for k in range(int((len(sources) - 1)/2)): rotors_position.append(None)
 
     counter_for_position_rotors_input = 0
-
 
     # If the input has the initial letters of the rotors, remove them from the input and set them as the position of the rotors.
     if len(message) > (len(sources) - 1):
@@ -55,7 +52,6 @@ def encript(message):
     
     for k in range(int(len(sources)/2)):
         _out += number_to_letter(source=alphabet, number=rotors_position[k]) + " "
-
 
     _max = len(alphabet) - 1
     _min = 0
@@ -146,6 +142,8 @@ def test():
         
         string_encripted = encript(string)
 
+        print("***************************************")
+
         string_desencripted = encript(string_encripted)
         
         counter_for_position_rotors_input = 0
@@ -168,8 +166,8 @@ def test():
             print("[ CORRECT ]")
         print("")
         time.sleep(0.01)
-
-# test()
+        
+#test()
 
 while True:
     _input = input("Enter message: ")

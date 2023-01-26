@@ -79,7 +79,7 @@ def generate_pairs(alphabet):
 def create_lists(alphabet):
 
     
-    rotors = 50
+    rotors = 10
 
     list_1, list_2 = generate_pairs(alphabet=alphabet)
     
@@ -114,7 +114,7 @@ def create_lists(alphabet):
 
     if write:
         
-        file = open(file = "test_open.py", mode="w", encoding="utf-8")
+        file = open(file = "rotors.py", mode="w", encoding="utf-8")
         
         file.write("sources = []\n")
 
@@ -153,4 +153,4 @@ def create_lists(alphabet):
         file.write("sources.append(_rotor_reflector_internal)\n")
         file.close()
         
-create_lists(alphabet=new_long_alphabet)
+create_lists(alphabet=alphabet)
