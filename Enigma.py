@@ -8,7 +8,7 @@ window = Tk()
 
 window.title("Enigma")
 window.geometry("650x560")
-window.resizable(True,True)
+window.resizable(False, False)
 window.configure(background="white")
 
 color_button = ("gray50")
@@ -55,9 +55,7 @@ listbox = Listbox()
 
 counter_invalid_letter = 0
 
-counter_encripted_letter = 0
-
-_len_input_list_for_print = StringVar()
+encirpted_letters = []
 
 # Set alphabet for rotors.
 alphabet_for_position_rotor = ("A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z")
@@ -75,8 +73,7 @@ _reflector_rotor_external = ("A","B","C","D","E","F","G","H","I","J","K","L","M"
 
 _reflector_rotor_internal = ("y","+","u","a","P","M","í","*","É","v","1","T","F","Q","q","8","E","N"," ","k","L","3","n","X","W","c","h","D","x","Y","-","Ú",",","m","Z","Í","w","S","4","g","V","é","Ó","7","Ñ","6","t","s","C","J","j","b","A",".","/","I","i","o","e","ó","ñ","G","á","9","K","5","U","l","2","r","p","O","ú","z","f","R","d","B","H","Á","?","¿")
 def get_info_input(): 
-    global _len_input_list
-    global counter_encripted_letter
+    _len_input_list_for_print = StringVar()
     _len_input_list_memory = None
     while True:
         _input = _input_text.get()
@@ -106,10 +103,11 @@ def get_info_input():
             _len_input_list.append(k)
         if _len_input_list_memory != _len_input_list:
             _len_input_list = len(_len_input_list)
-            value = "Encripted: " + str(counter_encripted_letter) + "/" + str(_len_input_list)
+            value = "Encripted: " +  "/" + str(_len_input_list)
             _len_input_list_for_print.set(value)
             Entry(window, font=("arial",15), width=20, textvariable=_len_input_list_for_print, borderwidth=3, background="white").place(x=150, y=450)
         _len_input_list_memory = _len_input_list
+
         sleep(0.1)
 
 # Returns the letter that is in the posiiton of number in source.
@@ -197,7 +195,7 @@ def letter_up(rotor):
         rotor_letter_3_1.set(value_1)
         rotor_letter_3_2.set(value_2)
         rotor_letter_3_3.set(value_3)
-
+    
 # Move one position down all the letters of one rotor.
 def letter_down(rotor):
 
@@ -280,7 +278,6 @@ def encript():
     global number_of_letter_rotor_3
     global out
     global counter_invalid_letter
-    global counter_encripted_letter
 
     # Take the input of the entry.
     _input = _input_text.get()
@@ -318,7 +315,6 @@ def encript():
     _out += number_to_letter(source=alphabet, number=number_of_letter_rotor_1) + " " + number_to_letter(source=alphabet, number=number_of_letter_rotor_2) + " " + number_to_letter(source=alphabet, number=number_of_letter_rotor_3) + " "
 
     # Encript each letter of the input one by one.
-    counter_encripted_letter = 0
     for letter in _input:
         if letter in alphabet:
             _position_alpha = number_of_letter_rotor_3
@@ -372,7 +368,8 @@ def encript():
             elif k < 1: k += 82
 
             _out += number_to_letter(source=alphabet, number=k)
-            out.set(value = (_out))
+            encirpted_letters.append(number_to_letter(source=alphabet, number=k))
+            out.set(value=_out)
 
             if print_all_variables:
                 print("\n")
@@ -425,8 +422,9 @@ def encript():
             error_text = '"' + str(letter) + '"' + " is not in alphabet."
             _position_entry_error += 1
             listbox.insert(_position_entry_error, error_text)
-        counter_encripted_letter += 1
-        print(counter_encripted_letter)
+        sleep(0.5)
+    return
+
 
 frm_1 = Frame(window, bg="white", height=244, width=73)
 frm_1.place(x=13, y=65)
@@ -439,6 +437,10 @@ set_mousewheel(frm_2, lambda e: letter_up(rotor=2))
 frm_2 = Frame(window, bg="white", height=244, width=73)
 frm_2.place(x=211, y=65)
 set_mousewheel(frm_2, lambda e: letter_up(rotor=3))
+
+encript_method = threading.Thread(target=encript, name="Encirpt")
+
+
 
 button_up_1 = Button(window, text="UP", bg=color_button, fg=cn,activebackground=actb, width=width_button, height=high_button, command=lambda:letter_up(rotor=1), cursor="hand2").grid(row=1, column=0, padx=13, pady=10)
 button_down_1 = Button(window, text="DOWN", bg=color_button, fg=cn, activebackground=actb, width=width_button, height=high_button, command=lambda:letter_down(rotor=1), cursor="hand2").grid(row=5, column=0, padx=13, pady=10)
@@ -466,14 +468,13 @@ _input_text.place(x=30, y=400)
 
 _output_text = Entry(window, font=("arial",15), width=50, textvariable=out, borderwidth=3, background="white").place(x=30, y=500)
 
-button_encript = Button(window, text="Encript", bg=color_button, fg=cn, activebackground=actb, width=width_button, height=high_button, command=lambda:encript(), cursor="hand2").place(x=30, y=435)
+button_encript = Button(window, text="Encript", bg=color_button, fg=cn, activebackground=actb, width=width_button, height=high_button, command=lambda: encript_method.start(), cursor="hand2").place(x=30, y=435)
 
-button_reset = Button(window, text="Reset", bg=color_button, fg=cn, activebackground=actb, width=width_button, height=high_button, command=lambda:reset(), cursor="hand2").place(x=350, y=160)
+button_reset = Button(window, text="Reset", bg=color_button, fg=cn, activebackground=actb, width=width_button, height=high_button, command=lambda: reset(), cursor="hand2").place(x=350, y=160)
 
 listbox.place(x=450, y=40, width=150, height=300)
 
-_get_info_input = threading.Thread(target=get_info_input, name="Get info input")
-_get_info_input.start()
-
+_get_info_input_method = threading.Thread(target=get_info_input, name="Get info input")
+_get_info_input_method.start()
 
 window.mainloop()
