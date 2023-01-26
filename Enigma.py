@@ -9,8 +9,7 @@ encripted_letters = []
 
 start_encript = []
 
-# Set alphabet. 
-
+# Set alphabet.
 sources = get_sources()
 alphabet = sources[0]
 
@@ -22,7 +21,7 @@ def number_to_letter(source, number):
 def letter_to_number(source, letter):
     return source.index(letter)
 
-def encript(message):
+def encript(message, _encript=True):
     rotors_position = []
     for k in range(int((len(sources) - 1)/2)): rotors_position.append(None)
 
@@ -49,9 +48,9 @@ def encript(message):
     # Write the initial position of the rotors in _out.
     _out = ""
     # _out += number_to_letter(source=alphabet, number=rotors_position[0]) + " " + number_to_letter(source=alphabet, number=rotors_position[1]) + " " + number_to_letter(source=alphabet, number=rotors_position[2]) + " "
-    
-    for k in range(int(len(sources)/2)):
-        _out += number_to_letter(source=alphabet, number=rotors_position[k]) + " "
+    if _encript:
+        for k in range(int(len(sources)/2)):
+            _out += number_to_letter(source=alphabet, number=rotors_position[k]) + " "
 
     _max = len(alphabet) - 1
     _min = 0
@@ -116,7 +115,9 @@ def encript(message):
             _out += number_to_letter(source=alphabet, number=number)
 
         else: 
-            print(letter + "is not in the alphabet")
+            if letter == "\n": 
+                letter = "\\n"
+            print(letter + " is not in the alphabet")
         
         rotors_position[0] = rotors_position[0] + 1
 
@@ -167,9 +168,31 @@ def test():
         print("")
         time.sleep(0.01)
         
-#test()
 
-while True:
-    _input = input("Enter message: ")
-    message_encripted = encript(message=_input)
-    print(message_encripted)
+# test()
+if __name__ == "__main__":
+    while True:
+        _input = input("Enter message: ")
+        message_encripted = encript(message=_input)
+        print(message_encripted)
+
+# Encript
+file_name = "doc.txt"
+file = open(file_name, "r")
+file_encripted = encript(file.read())
+file.close()
+
+out_file = open(file_name.replace(".txt", "_out.txt"), "w")
+out_file.write(file_encripted)
+out_file.close()
+
+# Decrypt
+
+file_name = "doc_out.txt"
+file = open(file_name, "r")
+file_encripted = encript(file.read(), _encript = False)
+file.close()
+
+out_file = open(file_name.replace(".txt", "_out.txt"), "w")
+out_file.write(file_encripted)
+out_file.close()
