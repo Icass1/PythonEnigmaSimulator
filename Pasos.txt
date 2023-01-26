@@ -1,0 +1,17 @@
+
+list_1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+list_2 = [4, 7, 3, 2, 0, 0, 0, 0, 0, 0]
+characters_left = []
+
+1º comprovar si el numero esta en la lista 2
+	1º obtener el indice del numero en la lista 2
+	2º con el indice obtener el valor de la lista 1 y ponerlo en el indice 			del numero
+
+2º obtener un numero aleatorio con len(characters_left)
+3º poner la letra con el indice del numero aleatorio en characters_left en el indice del numero en la lista 2
+
+
+'│', '┤', '╡', '╢', '╖', '╕', '╣', '║', '╗', '╝', '╜', '╛', '┐', '└', '┴', '┬', '├', '─', '┼', '╞', '╟','╚', '╔', '╩', '╦', '╠', '═', '╬', '╧', '╨', '╤', '╥', '╙', '╘', '╒', '╓', '╫', '╪', '┘', '┌',
+
+
+

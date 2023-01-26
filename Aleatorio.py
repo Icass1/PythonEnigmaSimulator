@@ -1,5 +1,5 @@
-from random import randrange, shuffle
 from bisect import bisect, insort
+from random import randrange, shuffle
 from time import sleep
 from typing import SupportsFloat
 
@@ -16,45 +16,69 @@ long_alphabet =    ['☺', '☻', '♥', '♦', '♣', '♠', '•', '◘', '○
 '╚', '╔', '╩', '╦', '╠', '═', '╬', '╧', '╨', '╤', '╥', '╙', '╘', '╒', '╓', '╫', '╪', '┘', '┌', '█', '▄', '▌', '▐', '▀', 'α', 'ß', 'Γ', 'π', 'Σ', 'σ', 'µ', 'τ', 'Φ', 'Θ', 'Ω', 'δ', '∞', 'φ', 'ε',
 '∩', '≡', '±', '≥', '≤', '⌠', '⌡', '÷', '≈', '°', '∙', '·', '√', 'ⁿ', '²', '■', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ']
 
-long_alphabet = alphabet
-_out = []
+def char_is_in_list(char, list):
+    for k in list:
+        if char == k:
+            return True
+    return False
 
-for letter in long_alphabet:
-    random_number = randrange(len(long_alphabet))
-    random_letter = long_alphabet[random_number]
-    _out.append([letter, random_letter])
-print(_out)
-"""
-_reflector_rotor_external = []
-_reflector_rotor_internal = []
-_len = len(long_alphabet)
-_out = []
+def _pop(index, list):
+    _out = []
+    for element in list:
+        if list.index(element) == index:
+            pass
+        else: _out.append(element)
+    return _out
 
-for letter in long_alphabet:
-    print("letter: {}".format(letter))
-    print(long_alphabet)
-    if letter in str(_out): pass
-    else:
-        while True:
-            random_number = randrange(len(long_alphabet) - 1)
-            random_letter = long_alphabet[random_number]
-            if random_letter in str(_out): pass
-            else: break
-        _out.append([letter, random_letter])
-        long_alphabet.pop(long_alphabet.index(letter))
-        try:
-            long_alphabet.pop(long_alphabet.index(random_letter))
-        except: print(letter + " has already poped")
-    print("[{}, {}]".format(letter, random_letter))
-    print(long_alphabet)
+def generata_pairs(alphabet):
+    print(len(alphabet))
+    list_1 = alphabet
+    list_2 = []
+    for k in list_1:
+        list_2.append("ą")
+
+    characters_left = alphabet
+    for letter in list_1:
+        print(letter)
+
+        if char_is_in_list(char=letter, list=list_2):
+            _index = list_2.index(letter)
+            list_2[list_1.index(letter)] = list_1[_index]
+            characters_left = _pop(index=_index, list=characters_left)
+            print("if")
+        else:
+            print("else")
+            random_number = randrange(len(characters_left) - 1)
+            random_letter = characters_left[random_number]
+            list_2[list_1.index(letter)] = random_letter
+
+            characters_left = _pop(index=random_number, list=characters_left)
+
+        
+        print(list_1)
+        print(list_2)
+        print(characters_left)            
+        print("\n")
+    print(list_1)
     print("\n")
+    print(list_2)
+    return list_1, list_2
 
-# print(_out)
-counter = 1
-for pair in _out:
-    print("{}: {}".format(counter, pair))
-    counter += 1
+def check_pairs(list_1, list_2):
+    if len(list_1) != len(list_2):
+        print("The length of the lists must be equal.")
+        return
+    for _index in range(0, len(list_1) - 1):
+        list_1_letter_1 = list_1[_index]
+        list_2_letter_1 = list_1[_index]
+        
+        list_1_letter_2 = list_1[list_2.index(list_1_letter_1)]
+        list_2_letter_2 = list_2[list_1.index(list_2_letter_1)]
+        print(list_1_letter_1)
+        print(list_2_letter_1)
+        print(list_1_letter_2)
+        print(list_2_letter_2)
 
-print(len(_out))
-print(_len)
-"""
+list_1, list_2 = generata_pairs(alphabet=alphabet)
+check_pairs(list_1=list_1, list_2=list_2)
+
