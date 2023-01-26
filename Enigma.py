@@ -25,9 +25,6 @@ _rotor_2_internal =         ('p', '¸', '╚', '?', "'", '3', 'Â', '³', '♫',
 _rotor_reflector_external = ('☺', 'º', '☻', '╡', '♥', 'ó', '♦', '√', '♣', '╢', '♠', '┌', '•', '▒', '◘', 'a', '○', 'k', '◙', '3', '♂', '∞', '♀', '╦', '♪', 'À', '♫', 'è', '☼', 'î', '►', 'Ú', '◄', '<', '↕', '┼', '‼', 'ß', '¶', 'ë', '§', '░', '▬', 'Q', '↨', 'Ÿ', '↑', ' ', '↓', '╒', '→', 'Φ', '←', 'Ü', '∟', '▲', '↔', '?', '▼', '⌠', 'A', 'X', '"', 'o', '#', '{', '$', 'F', '%', 'y', '&', 'δ', "'", 'ž', '(', 'þ', ')', 'Ç', '*', 'œ', '+', '9', ',', '═', '-', '›', '.', 'Æ', '/', 'Á', ':', ';', '¯', '=', 'Z', '>', '³', '@', 'P', 'B', '´', 'C', '¥', 'D', '8', 'E', 'm', 'G', '~', 'H', '╘', 'I', '†', 'J', '∩', 'K', '„', 'L', 'v', 'M', 'π', 'N', 'ý', 'O', 'n', 'R', '≥', 'S', '5', 'T', 'w', 'U', '^', 'V', '|', 'W', '»', 'Y', '▌', '[', 'φ', ']', '■', '_', '”', '`', '│', 'b', '‰', 'c', 'Ï', 'd', 'Ó', 'e', 'È', 'f', 'ü', 'g', 'õ', 'h', '█', 'i', '╜', 'j', '╓', 'l', '╕', 'p', '├', 'q', 'Ñ', 'r', '±', 's', '╙', 't', 'ˆ', 'u', 'â', 'x', '4', 'z', 'á', '}', '≈', 'Δ', 'Å', '€', 'ç', '‚', 'Í', 'ƒ', 'τ', '…', 'ð', '‡', '╩', 'Š', '¸', '‹', '╧', 'Œ', 'Õ', 'Ž', '└', '‘', 'Þ', '’', '∙', '“', '×', '–', 'Ò', '—', '©', '˜', 'í', '™', '╤', 'š', '¼', '¡', '╛', '¢', 'Θ', '£', '¾', '¤', '┘', '¦', 'Ø', '¨', '║', 'ª', 'ø', '«', 'æ', '¬', 'Ð', '®', '6', '°', 'ê', '²', 'Ô', 'µ', 'Ù', '·', 'ⁿ', '¹', 'Ê', '½', '╝', '¿', '┬', 'Â', '▓', 'Ã', 'ò', 'Ä', 'É', 'Ë', 'ε', 'Ì', '┐', 'Î', '1', 'Ö', '╠', 'Û', '╣', 'Ý', '⌐', 'à', '╔', 'ã', 'ù', 'ä', '╥', 'å', 'ï', 'é', 'σ', 'ì', '╖', 'ñ', '≡', 'ô', 'û', 'ö', '╫', '÷', '7', 'ú', '╟', 'ÿ', 'Σ', '₧', '▀', '┤', '▄', '╗', '─', '┴', 'Ω', '╞', '╪', '╚', '▐', '╬', '╨', '2', 'α', 'Γ', '≤', '⌡')
 _rotor_reflector_internal = ('º', '☺', '╡', '☻', 'ó', '♥', '√', '♦', '╢', '♣', '┌', '♠', '▒', '•', 'a', '◘', 'k', '○', '3', '◙', '∞', '♂', '╦', '♀', 'À', '♪', 'è', '♫', 'î', '☼', 'Ú', '►', '<', '◄', '┼', '↕', 'ß', '‼', 'ë', '¶', '░', '§', 'Q', '▬', 'Ÿ', '↨', ' ', '↑', '╒', '↓', 'Φ', '→', 'Ü', '←', '▲', '∟', '?', '↔', '⌠', '▼', 'X', 'A', 'o', '"', '{', '#', 'F', '$', 'y', '%', 'δ', '&', 'ž', "'", 'þ', '(', 'Ç', ')', 'œ', '*', '9', '+', '═', ',', '›', '-', 'Æ', '.', 'Á', '/', ':', '¯', ';', 'Z', '=', '³', '>', 'P', '@', '´', 'B', '¥', 'C', '8', 'D', 'm', 'E', '~', 'G', '╘', 'H', '†', 'I', '∩', 'J', '„', 'K', 'v', 'L', 'π', 'M', 'ý', 'N', 'n', 'O', '≥', 'R', '5', 'S', 'w', 'T', '^', 'U', '|', 'V', '»', 'W', '▌', 'Y', 'φ', '[', '■', ']', '”', '_', '│', '`', '‰', 'b', 'Ï', 'c', 'Ó', 'd', 'È', 'e', 'ü', 'f', 'õ', 'g', '█', 'h', '╜', 'i', '╓', 'j', '╕', 'l', '├', 'p', 'Ñ', 'q', '±', 'r', '╙', 's', 'ˆ', 't', 'â', 'u', '4', 'x', 'á', 'z', '≈', '}', 'Å', 'Δ', 'ç', '€', 'Í', '‚', 'τ', 'ƒ', 'ð', '…', '╩', '‡', '¸', 'Š', '╧', '‹', 'Õ', 'Œ', '└', 'Ž', 'Þ', '‘', '∙', '’', '×', '“', 'Ò', '–', '©', '—', 'í', '˜', '╤', '™', '¼', 'š', '╛', '¡', 'Θ', '¢', '¾', '£', '┘', '¤', 'Ø', '¦', '║', '¨', 'ø', 'ª', 'æ', '«', 'Ð', '¬', '6', '®', 'ê', '°', 'Ô', '²', 'Ù', 'µ', 'ⁿ', '·', 'Ê', '¹', '╝', '½', '┬', '¿', '▓', 'Â', 'ò', 'Ã', 'É', 'Ä', 'ε', 'Ë', '┐', 'Ì', '1', 'Î', '╠', 'Ö', '╣', 'Û', '⌐', 'Ý', '╔', 'à', 'ù', 'ã', '╥', 'ä', 'ï', 'å', 'σ', 'é', '╖', 'ì', '≡', 'ñ', 'û', 'ô', '╫', 'ö', '7', '÷', '╟', 'ú', 'Σ', 'ÿ', '▀', '₧', '▄', '┤', '─', '╗', 'Ω', '┴', '╪', '╞', '▐', '╚', '╬', '2', '╨', 'α', 'Γ', '⌡', '≤')
 
-
-
-
 sources.append(alphabet)
 
 sources.append(_rotor_1_external)
@@ -41,7 +38,6 @@ sources.append(_rotor_2_internal)
 
 sources.append(_rotor_reflector_external)
 sources.append(_rotor_reflector_internal)
-
 
 # Returns the letter that is in the posiiton of number in source.
 def number_to_letter(source, number):
@@ -69,9 +65,7 @@ def encript(message):
         _position_rotor_2 = randrange(len(alphabet)-1)
         _position_reflector = randrange(len(alphabet)-1)
 
-    
-    positions_rotors = [_position_rotor_1, _position_rotor_2, _position_reflector]
-    
+    rotors_position = [_position_rotor_1, _position_rotor_2, _position_reflector]
 
     # Write the initial position of the rotors in _out.
     _out = ""
@@ -80,10 +74,10 @@ def encript(message):
     _max = len(alphabet) - 1
     _min = 0
     _add_substract = len(alphabet)
+
     # Encript each letter of the input one by one.
     for letter in message:
         if letter in alphabet:
-            print(letter)
             number = int(letter_to_number(source=alphabet, letter=letter))
             number -= _position_rotor_1
             number += 1
@@ -92,52 +86,51 @@ def encript(message):
             elif number < _min: number += _add_substract
 
             for k in range(2):
-                _position_rotor_add = positions_rotors[k]
-                _position_rotor_substract = positions_rotors[k+1]
+                print(k)
+
+                _position_add = rotors_position[k]
+                _position_substract = rotors_position[k+1]
                 k *= 2
 
                 letter = number_to_letter(source=sources[k+1], number=number)
                 
                 number = int(letter_to_number(source=sources[k+2], letter=letter))
-                number += _position_rotor_add
-                number -= _position_rotor_substract
+                number += _position_add
+                number -= _position_substract
 
                 if number > _max: number -= _add_substract
                 elif number < _min: number += _add_substract
-                print("letter: {}".format(letter))
-                print("number: {}".format(number))
 
             letter = number_to_letter(source=sources[5], number=number)
 
             number = int(letter_to_number(source=sources[6], letter=letter))
-            number -= _position_rotor_2
             number += _position_reflector
+            number -= _position_rotor_2
 
             if number > _max: number -= _add_substract
             elif number < _min: number += _add_substract
 
-            print("letter: {}".format(letter))
-            print("number: {}".format(number))
-
             for k in range(2, 0, -1):
                 k -= 1
+                print(k)
+                _position_add = rotors_position[k]
+                if k == 0:
+                    _position_substract = 1
+
+                else: _position_substract = rotors_position[k-1]
+
                 k *= 2
 
                 letter = number_to_letter(source=sources[k+2], number=number)
                 
                 number = int(letter_to_number(source=sources[k+1], letter=letter))
-                number += _position_rotor_1
-                number -= _position_rotor_2
+                number += _position_add
+                number -= _position_substract
 
                 if number > _max: number -= _add_substract
                 elif number < _min: number += _add_substract
 
-                print("letter: {}".format(letter))
-                print("number: {}".format(number))
-
             _out += number_to_letter(source=alphabet, number=number)
-            print("letter: {}".format(number_to_letter(source=alphabet, number=number)))
-            print("\n")
 
         else: 
             print(letter + "is not in the alphabet")
