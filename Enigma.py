@@ -36,6 +36,9 @@ error_text = StringVar()
 
 out = StringVar() 
 
+listbox = Listbox()
+
+counter_invalid_letter = 0
 
 alphabet_for_position_rotor = ("A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z")
 alphabet =                  ("A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z","Á","É","Í","Ó","Ú","á","é","í","ó","ú","1","2","3","4","5","6","7","8","9",".",","," ","-","+","*","/","¿","?")
@@ -48,8 +51,6 @@ _beta_rotor_internal =      ('k','n','j','*','T','O',',','z','5','L','N','F','B'
 
 _reflector_rotor_external = ("A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z","Á","É","Í","Ó","Ú","á","é","í","ó","ú","1","2","3","4","5","6","7","8","9",".",","," ","-","+","*","/","¿","?")
 _reflector_rotor_internal = ("y","+","u","a","P","M","í","*","É","v","1","T","F","Q","q","8","E","N"," ","k","L","3","n","X","W","c","h","D","x","Y","-","Ú",",","m","Z","Í","w","S","4","g","V","é","Ó","7","Ñ","6","t","s","C","J","j","b","A",".","/","I","i","o","e","ó","ñ","G","á","9","K","5","U","l","2","r","p","O","ú","z","f","R","d","B","H","Á","?","¿")
-
-
 
 def number_to_letter(source, number):
     number -=1
@@ -183,6 +184,7 @@ def reset():
     global number_of_letter_2
     global number_of_letter_3
     global label
+    global counter_invalid_letter
 
     number_of_letter_1 = 0
     number_of_letter_2 = 0
@@ -190,8 +192,11 @@ def reset():
     letter_up(button=1)
     letter_up(button=2)
     letter_up(button=3)
-    try: label.destroy()
-    except: pass
+    
+    while counter_invalid_letter > 0:
+        counter_invalid_letter -= 1
+        listbox.delete(0)
+    counter_invalid_letter = 0
 
 def encript():
     
@@ -200,6 +205,7 @@ def encript():
     global number_of_letter_2
     global number_of_letter_3
     global out
+    global counter_invalid_letter
 
     _input = _input_text.get()
     _position_entry_error = 0
@@ -307,10 +313,10 @@ def encript():
             out.set(value = (_out))
 
         else: 
+            counter_invalid_letter += 1
             error_text = '"' + str(letter) + '"' + " is not in the alphabet."
-            _position_entry_error += 25
-            label = Label(window, text=error_text)
-            label.place(x=475, y=_position_entry_error)
+            _position_entry_error += 1
+            listbox.insert(_position_entry_error, error_text)
 
 letter_up(button=1)
 letter_up(button=2)
@@ -345,5 +351,7 @@ _output_text = Entry(window, font=("arial",15), width=50, textvariable=out, bord
 button_encript = Button(window, text="Encript", bg=color_boton, fg=cn, activebackground=actb, width=ancho_boton, height=alto_boton, command=lambda:encript(), cursor="hand2").place(x=30, y=435)
 
 button_reset = Button(window, text="Reset", bg=color_boton, fg=cn, activebackground=actb, width=ancho_boton, height=alto_boton, command=lambda:reset(), cursor="hand2").place(x=350, y=160)
+
+listbox.place(x=450, y=40, width=150, height=300)
 
 window.mainloop()
