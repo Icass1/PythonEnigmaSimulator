@@ -1,5 +1,6 @@
-from tkinter import *
 from time import sleep
+from tkinter import *
+import threading
 
 print_all_variables = False
 
@@ -54,6 +55,10 @@ listbox = Listbox()
 
 counter_invalid_letter = 0
 
+counter_encripted_letter = 0
+
+_len_input_list_for_print = StringVar()
+
 # Set alphabet for rotors.
 alphabet_for_position_rotor = ("A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z")
 
@@ -67,7 +72,45 @@ _beta_rotor_external =      ("S","T","U","V","W","X","Y","Z","a","b","c","d","e"
 _beta_rotor_internal =      ('k','n','j','*','T','O',',','z','5','L','N','F','B','o','g','P',"¿",'Ñ','3','d',' ','i','Á','J','í','Z','G','.','4','r','q','C','K','-','v','s','1','t','c','U','á','l','h','E','m','e',"?",'x','R','W','H','y','9','Y','ú','7','S','2','6','w','8','é','ñ','ó','b','I','X','u','Í','Q','Ú','D','É','M','+','V','f','a','p','/','A','Ó')
 
 _reflector_rotor_external = ("A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z","Á","É","Í","Ó","Ú","á","é","í","ó","ú","1","2","3","4","5","6","7","8","9",".",","," ","-","+","*","/","¿","?")
+
 _reflector_rotor_internal = ("y","+","u","a","P","M","í","*","É","v","1","T","F","Q","q","8","E","N"," ","k","L","3","n","X","W","c","h","D","x","Y","-","Ú",",","m","Z","Í","w","S","4","g","V","é","Ó","7","Ñ","6","t","s","C","J","j","b","A",".","/","I","i","o","e","ó","ñ","G","á","9","K","5","U","l","2","r","p","O","ú","z","f","R","d","B","H","Á","?","¿")
+def get_info_input(): 
+    global _len_input_list
+    global counter_encripted_letter
+    _len_input_list_memory = None
+    while True:
+        _input = _input_text.get()
+
+        _input_list = []
+        for letter in _input:
+            _input_list.append(letter)
+    
+        _input_list_counter = 0
+        try:
+            if _input_list[0] in alphabet: _input_list_counter += 1
+            if _input_list[1] == " ": _input_list_counter += 1
+            if _input_list[2] in alphabet: _input_list_counter += 1
+            if _input_list[3] == " ": _input_list_counter += 1
+            if _input_list[4] in alphabet: _input_list_counter += 1
+            if _input_list[5] == " ": _input_list_counter += 1
+        except: pass
+
+        if _input_list_counter == 6:
+            _input = ""            
+            counter = 0
+            for letter in _input_list:
+                if counter > 5: _input += letter
+                counter += 1
+        _len_input_list = []
+        for k in _input:
+            _len_input_list.append(k)
+        if _len_input_list_memory != _len_input_list:
+            _len_input_list = len(_len_input_list)
+            value = "Encripted: " + str(counter_encripted_letter) + "/" + str(_len_input_list)
+            _len_input_list_for_print.set(value)
+            Entry(window, font=("arial",15), width=20, textvariable=_len_input_list_for_print, borderwidth=3, background="white").place(x=150, y=450)
+        _len_input_list_memory = _len_input_list
+        sleep(0.1)
 
 # Returns the letter that is in the posiiton of number in source.
 def number_to_letter(source, number):
@@ -237,6 +280,7 @@ def encript():
     global number_of_letter_rotor_3
     global out
     global counter_invalid_letter
+    global counter_encripted_letter
 
     # Take the input of the entry.
     _input = _input_text.get()
@@ -266,12 +310,7 @@ def encript():
         for letter in _input_list:
             if counter > 5: _input += letter
             counter += 1
-    _len_input_list = []
-    for k in _input:
-        _len_input_list.append(k)
 
-    _len_input = len(_len_input_list)
-    print(_len_input)
     _position_entry_error = 0
 
     # Write the initial position of the rotors in _out.
@@ -279,7 +318,7 @@ def encript():
     _out += number_to_letter(source=alphabet, number=number_of_letter_rotor_1) + " " + number_to_letter(source=alphabet, number=number_of_letter_rotor_2) + " " + number_to_letter(source=alphabet, number=number_of_letter_rotor_3) + " "
 
     # Encript each letter of the input one by one.
-    counter = 1
+    counter_encripted_letter = 0
     for letter in _input:
         if letter in alphabet:
             _position_alpha = number_of_letter_rotor_3
@@ -386,9 +425,8 @@ def encript():
             error_text = '"' + str(letter) + '"' + " is not in alphabet."
             _position_entry_error += 1
             listbox.insert(_position_entry_error, error_text)
-
-        print(str(counter) + "/" + str(_len_input))
-        counter +=1
+        counter_encripted_letter += 1
+        print(counter_encripted_letter)
 
 frm_1 = Frame(window, bg="white", height=244, width=73)
 frm_1.place(x=13, y=65)
@@ -433,5 +471,9 @@ button_encript = Button(window, text="Encript", bg=color_button, fg=cn, activeba
 button_reset = Button(window, text="Reset", bg=color_button, fg=cn, activebackground=actb, width=width_button, height=high_button, command=lambda:reset(), cursor="hand2").place(x=350, y=160)
 
 listbox.place(x=450, y=40, width=150, height=300)
+
+_get_info_input = threading.Thread(target=get_info_input, name="Get info input")
+_get_info_input.start()
+
 
 window.mainloop()
