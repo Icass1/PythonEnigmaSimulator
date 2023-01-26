@@ -187,7 +187,6 @@ out_file.write(file_encripted)
 out_file.close()
 
 # Decrypt
-
 file_name = "doc_out.txt"
 file = open(file_name, "r")
 file_encripted = encript(file.read(), _encript = False)
