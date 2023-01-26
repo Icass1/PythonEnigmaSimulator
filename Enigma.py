@@ -192,7 +192,6 @@ def letter_up(button):
         input_text_1_3.set(value_3)
         
     if button == 2:
-        print("button 2")
         if number_of_letter_2 > 26: number_of_letter_2 = 0
         
         number_of_letter_2 += 1
@@ -283,6 +282,7 @@ def letter_down(button):
 
 def number_to_letter(number):
     number -=1
+    if number < 0: number = 26
     number_to_letter_out = alphabet[number]
     return number_to_letter_out
 
@@ -308,15 +308,10 @@ def encript():
     global number_of_letter_3
     global out
 
-
     _input = _input_text.get()
-    _position_alpha_memory = number_of_letter_3
-    _position_beta_memory = number_of_letter_2
-    _position_reflector_memory = number_of_letter_1
-
 
     _out = ""
-    _out += number_to_letter(_position_reflector_memory) + " " + number_to_letter(_position_beta_memory) + " " + number_to_letter(_position_alpha_memory) + " "
+    _out += number_to_letter(number_of_letter_1) + " " + number_to_letter(number_of_letter_2) + " " + number_to_letter(number_of_letter_3) + " "
     for letter in _input:
         if letter in alphabet:
             _position_alpha = number_of_letter_3
@@ -407,16 +402,14 @@ def encript():
             letter_up(button=3)
             if number_of_letter_3_memory > 26:
                 letter_up(button=2)
-                print("if")
+            
             if number_of_letter_2_memory > 26: letter_up(button=1)
             if number_of_letter_1_memory > 26:
                 number_of_letter_1 = 1
                 number_of_letter_2 = 1
                 number_of_letter_3 = 1
 
-            # _out += str(_position_reflector_memory) + " " + str(_position_beta_memory) + " " + str(_position_alpha_memory) + " "
             _out += number_to_letter(number=j)
-            # _out += str(_position_alpha_memory) + str(_position_beta_memory) + "" + str(_position_reflector_memory) 
             value=(_out)
             out.set(value=value)
         else: print('"' + str(letter) + '"' + " is not in the alphabet.")
