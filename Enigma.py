@@ -2,12 +2,7 @@ from time import sleep
 import threading
 from random import randrange
 
-print_all_variables = True
-
-# Set rotors position.
-number_of_letter_rotor_1 = 1
-number_of_letter_rotor_2 = 1
-number_of_letter_rotor_3 = 1
+print_all_variables = False
 
 counter_invalid_letter = 0
 
@@ -40,22 +35,21 @@ def letter_to_number(source, letter):
     return source.index(letter)
 
 def encript(message):
-    
 
     # If the input has the initial letters of the rotors, remove them from the input and set them as the position of the rotors.
     if message[0] in alphabet and message[1] == " " and message[2] in alphabet and message[3] == " " and message[4] in alphabet and message[5] == " ":
-        number_of_letter_rotor_1 = letter_to_number(letter=message[0], source=alphabet)
-        number_of_letter_rotor_2 = letter_to_number(letter=message[2], source=alphabet)
-        number_of_letter_rotor_3 = letter_to_number(letter=message[4], source=alphabet)
+        _position_rotor_1 = letter_to_number(letter=message[0], source=alphabet)
+        _position_rotor_2 = letter_to_number(letter=message[2], source=alphabet)
+        _position_reflector = letter_to_number(letter=message[4], source=alphabet)
         message = message[6:len(message)]
     else:
-        number_of_letter_rotor_1 = randrange(len(alphabet)-1)
-        number_of_letter_rotor_2 = randrange(len(alphabet)-1)
-        number_of_letter_rotor_3 = randrange(len(alphabet)-1)
+        _position_rotor_1 = randrange(len(alphabet)-1)
+        _position_rotor_2 = randrange(len(alphabet)-1)
+        _position_reflector = randrange(len(alphabet)-1)
 
     # Write the initial position of the rotors in _out.
     _out = ""
-    _out += number_to_letter(source=alphabet, number=number_of_letter_rotor_1) + " " + number_to_letter(source=alphabet, number=number_of_letter_rotor_2) + " " + number_to_letter(source=alphabet, number=number_of_letter_rotor_3) + " "
+    _out += number_to_letter(source=alphabet, number=_position_rotor_1) + " " + number_to_letter(source=alphabet, number=_position_rotor_2) + " " + number_to_letter(source=alphabet, number=_position_reflector) + " "
     
     _max = len(alphabet) - 1
     _min = 0
@@ -63,13 +57,9 @@ def encript(message):
     # Encript each letter of the input one by one.
     for letter in message:
         if letter in alphabet:
-            _position_alpha = number_of_letter_rotor_3
-            _position_beta = number_of_letter_rotor_2
-            _position_reflector = number_of_letter_rotor_1
-
             a = int(letter_to_number(source=alphabet, letter=letter))
             print("a: " + str(a))
-            a -= _position_alpha
+            a -= _position_rotor_1
             a += 1
 
             if a > _max: a -= _add_substract
@@ -79,8 +69,8 @@ def encript(message):
             b = number_to_letter(source=_alpha_rotor_external, number=a)
             
             c = int(letter_to_number(source=_alpha_rotor_internal, letter=b))
-            c += _position_alpha
-            c -= _position_beta
+            c += _position_rotor_1
+            c -= _position_rotor_2
 
             if c > _max: c -= _add_substract
             elif c < _min: c += _add_substract
@@ -88,7 +78,7 @@ def encript(message):
             d = number_to_letter(source=_beta_rotor_external, number=c)
 
             e = int(letter_to_number(source=_beta_rotor_internal, letter=d))
-            e += _position_beta
+            e += _position_rotor_2
             e -= _position_reflector
 
             if e > _max: e -= _add_substract
@@ -97,7 +87,7 @@ def encript(message):
             f = number_to_letter(source=_reflector_rotor_external, number=e)
 
             g = int(letter_to_number(source=_reflector_rotor_internal, letter=f))
-            g -= _position_beta
+            g -= _position_rotor_2
             g += _position_reflector
 
             if g > _max: g -= _add_substract
@@ -106,8 +96,8 @@ def encript(message):
             h = number_to_letter(source=_beta_rotor_internal, number=g)
 
             i = int(letter_to_number(source=_beta_rotor_external, letter=h))
-            i -= _position_alpha
-            i += _position_beta
+            i -= _position_rotor_1
+            i += _position_rotor_2
 
             if i > _max: i -= _add_substract
             elif i < _min: i += _add_substract
@@ -116,7 +106,7 @@ def encript(message):
 
             k = int(letter_to_number(source=_alpha_rotor_external, letter=j))
             k -= 1
-            k += _position_alpha
+            k += _position_rotor_1
 
             # print("k before: " + str(k))
 
@@ -129,12 +119,9 @@ def encript(message):
             if print_all_variables:
                 print("\n")
 
-                print("number_of_letter_rotor_1: " + str(number_of_letter_rotor_1))
-                print("number_of_letter_rotor_2: " + str(number_of_letter_rotor_2))
-                print("number_of_lette_rotor_3: " + str(number_of_letter_rotor_3))
 
-                print("Position alpha: " + str(_position_alpha))
-                print("Position beta: " + str(_position_beta)) 
+                print("Position rotor 1: " + str(_position_rotor_1))
+                print("Position rotor 2: " + str(_position_rotor_2)) 
                 print("Position reflector: " + str(_position_reflector))
 
                 print("a: " + str(a))
@@ -147,10 +134,6 @@ def encript(message):
                 print("h: " + str(h))
                 print("i: " + str(i))
                 print("j: " + str(j))
-
-                print("3: " + str(number_of_letter_rotor_3))
-                print("2: " + str(number_of_letter_rotor_2))
-                print("1: " + str(number_of_letter_rotor_1))
 
         else: 
             print(letter + "is not in the alphabet")
