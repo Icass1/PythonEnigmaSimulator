@@ -35,16 +35,16 @@ input_text_3_3 = StringVar()
 out = StringVar() 
 
 alphabet_for_position_rotor = ("A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z")
-alphabet =                  ("A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z","Á","É","Í","Ó","Ú","á","é","í","ó","ú","1","2","3","4","5","6","7","8","9",".",","," ","-","+","*","/")
+alphabet =                  ("A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z","Á","É","Í","Ó","Ú","á","é","í","ó","ú","1","2","3","4","5","6","7","8","9",".",","," ","-","+","*","/","¿","?")
 
-_alpha_rotor_external =     ("q","r","s","t","u","v","w","x","y","z","Á","É","Í","Ó","Ú","á","é","í","ó","ú","1","2","3","4","5","6","7","8","9",".",","," ","-","+","*","/","A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p")
-_alpha_rotor_internal =     ('a','o','K','P','/','3','U','l','w','c','D','u','H','V','8','ú','Ñ','Y','n','p','4','F','k','*','2','-','O','q','B','C','d','R','I','Z',',','h','L','r','Ú','A','.','9','S','x','é','É','Q','i','W','f','6','g','t',' ','7','s','Á','T','Ó','v','G','á','Í','M','ó','m','e','N','+','X','ñ','1','E','b','y','j','J','5','í','z')
+_alpha_rotor_external =     ("q","r","s","t","u","v","w","x","y","z","Á","É","Í","Ó","Ú","á","é","í","ó","ú","1","2","3","4","5","6","7","8","9",".",","," ","-","+","*","/","¿","?","A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p")
+_alpha_rotor_internal =     ('a','o','K','P','/','3','U','l','w','c','D','u','H','V','8','ú','Ñ','Y','n','p','4','F','k','*','2','-','O','q','B','C','d','R','I','Z',',','h','L',"¿",'r','Ú','A','.','9','S','x','é','É','Q','i','W','f','6','g','t',' ','7','s','Á','T','Ó','v','G','á','Í','M','ó','m','e','N','+','X','ñ','1','E',"?",'b','y','j','J','5','í','z')
 
-_beta_rotor_external =      ("S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z","Á","É","Í","Ó","Ú","á","é","í","ó","ú","1","2","3","4","5","6","7","8","9",".",","," ","-","+","*","/","A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R")
-_beta_rotor_internal =      ('k','n','j','*','T','O',',','z','5','L','N','F','B','o','g','P','Ñ','3','d',' ','i','Á','J','í','Z','G','.','4','r','q','C','K','-','v','s','1','t','c','U','á','l','h','E','m','e','x','R','W','H','y','9','Y','ú','7','S','2','6','w','8','é','ñ','ó','b','I','X','u','Í','Q','Ú','D','É','M','+','V','f','a','p','/','A','Ó')
+_beta_rotor_external =      ("S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z","Á","É","Í","Ó","Ú","á","é","í","ó","ú","1","2","3","4","5","6","7","8","9",".",","," ","-","+","*","/","¿","?","A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R")
+_beta_rotor_internal =      ('k','n','j','*','T','O',',','z','5','L','N','F','B','o','g','P',"¿",'Ñ','3','d',' ','i','Á','J','í','Z','G','.','4','r','q','C','K','-','v','s','1','t','c','U','á','l','h','E','m','e',"?",'x','R','W','H','y','9','Y','ú','7','S','2','6','w','8','é','ñ','ó','b','I','X','u','Í','Q','Ú','D','É','M','+','V','f','a','p','/','A','Ó')
 
-_reflector_rotor_external = ("A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z","Á","É","Í","Ó","Ú","á","é","í","ó","ú","1","2","3","4","5","6","7","8","9",".",","," ","-","+","*","/")
-_reflector_rotor_internal = ("y","+","u","a","P","M","í","*","É","v","1","T","F","Q","q","8","E","N"," ","k","L","3","n","X","W","c","h","D","x","Y","-","Ú",",","m","Z","Í","w","S","4","g","V","é","Ó","7","Ñ","6","t","s","C","J","j","b","A",".","/","I","i","o","e","ó","ñ","G","á","9","K","5","U","l","2","r","p","O","ú","z","f","R","d","B","H","Á")
+_reflector_rotor_external = ("A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z","Á","É","Í","Ó","Ú","á","é","í","ó","ú","1","2","3","4","5","6","7","8","9",".",","," ","-","+","*","/","¿","?")
+_reflector_rotor_internal = ("y","+","u","a","P","M","í","*","É","v","1","T","F","Q","q","8","E","N"," ","k","L","3","n","X","W","c","h","D","x","Y","-","Ú",",","m","Z","Í","w","S","4","g","V","é","Ó","7","Ñ","6","t","s","C","J","j","b","A",".","/","I","i","o","e","ó","ñ","G","á","9","K","5","U","l","2","r","p","O","ú","z","f","R","d","B","H","Á","?","¿")
 
 
 class alpha_rotor_external:
@@ -192,6 +192,7 @@ def letter_up(button):
         input_text_1_3.set(value_3)
         
     if button == 2:
+        print("button 2")
         if number_of_letter_2 > 26: number_of_letter_2 = 0
         
         number_of_letter_2 += 1
@@ -309,101 +310,116 @@ def encript():
 
 
     _input = _input_text.get()
-    _position_alpha = number_of_letter_3
-    _position_beta = number_of_letter_2
-    _position_reflector = number_of_letter_1
+    _position_alpha_memory = number_of_letter_3
+    _position_beta_memory = number_of_letter_2
+    _position_reflector_memory = number_of_letter_1
 
 
     _out = ""
+    _out += number_to_letter(_position_reflector_memory) + " " + number_to_letter(_position_beta_memory) + " " + number_to_letter(_position_alpha_memory) + " "
     for letter in _input:
-        _position_alpha = number_of_letter_3
-        _position_beta = number_of_letter_2
-        _position_reflector = number_of_letter_1
+        if letter in alphabet:
+            _position_alpha = number_of_letter_3
+            _position_beta = number_of_letter_2
+            _position_reflector = number_of_letter_1
 
-        if print_all_variables: 
-                      
-            print("\n")
+            if print_all_variables: 
+                        
+                print("\n")
 
-            print("number_of_letter_1: " + str(number_of_letter_1))
-            print("number_of_letter_2: " + str(number_of_letter_2))
-            print("number_of_letter_3: " + str(number_of_letter_3))
+                print("number_of_letter_1: " + str(number_of_letter_1))
+                print("number_of_letter_2: " + str(number_of_letter_2))
+                print("number_of_letter_3: " + str(number_of_letter_3))
 
-            print("Position alpha: " + str(_position_alpha))
-            print("Position beta: " + str(_position_beta)) 
-            print("Position reflector: " + str(_position_reflector))
+                print("Position alpha: " + str(_position_alpha))
+                print("Position beta: " + str(_position_beta)) 
+                print("Position reflector: " + str(_position_reflector))
 
-        _letter = int(letter_to_number(letter=letter))
-        _letter -= _position_alpha
-        _letter += 1
-        if _letter > 80: _letter -= 80
-        elif _letter < 1: _letter += 80
+            _letter = int(letter_to_number(letter=letter))
+            _letter -= _position_alpha
+            _letter += 1
+            if _letter > 82: _letter -= 82
+            elif _letter < 1: _letter += 82
 
-        a = alpha_external.number_to_letter(number=_letter)
-        if print_all_variables: print("a: " + str(a))
-        
-        b = int(alpha_internal.letter_to_number(letter=a))
-        if print_all_variables: print("b: " + str(b))
+            a = alpha_external.number_to_letter(number=_letter)
+            if print_all_variables: print("a: " + str(a))
+            
+            b = int(alpha_internal.letter_to_number(letter=a))
+            if print_all_variables: print("b: " + str(b))
 
-        b += _position_alpha
-        b -= _position_beta
-        if b > 80: b -= 80
-        elif b < 1: b += 80
+            b += _position_alpha
+            b -= _position_beta
+            if b > 82: b -= 82
+            elif b < 1: b += 82
 
-        c = beta_external.number_to_letter(number=b)
-        if print_all_variables: print("c: " + str(c))
+            c = beta_external.number_to_letter(number=b)
+            if print_all_variables: print("c: " + str(c))
 
-        d = int(beta_internal.letter_to_number(letter=c))
-        if print_all_variables: print("d: " + str(d))
+            d = int(beta_internal.letter_to_number(letter=c))
+            if print_all_variables: print("d: " + str(d))
 
-        d += _position_beta
-        d -= _position_reflector
-        if d > 80: d -= 80
-        elif d < 1: d += 80
+            d += _position_beta
+            d -= _position_reflector
+            if d > 82: d -= 82
+            elif d < 1: d += 82
 
-        e = reflector_external.number_to_letter(number=d)
-        if print_all_variables: print("e: " + e)
+            e = reflector_external.number_to_letter(number=d)
+            if print_all_variables: print("e: " + e)
 
-        f = int(reflector_internal.letter_to_number(letter=e))
-        if print_all_variables: print("f: " + str(f))        
+            f = int(reflector_internal.letter_to_number(letter=e))
+            if print_all_variables: print("f: " + str(f))        
 
-        f-=_position_beta
-        f+=_position_reflector
-        if f > 80: f -= 80
-        elif f < 1: f += 80
+            f-=_position_beta
+            f+=_position_reflector
+            if f > 82: f -= 82
+            elif f < 1: f += 82
 
-        g = beta_internal.number_to_letter(number=f)
-        if print_all_variables: print("g: " + str(g))
+            g = beta_internal.number_to_letter(number=f)
+            if print_all_variables: print("g: " + str(g))
 
-        h = int(beta_external.letter_to_number(letter=g))
-        if print_all_variables: print("h: " + str(h))
+            h = int(beta_external.letter_to_number(letter=g))
+            if print_all_variables: print("h: " + str(h))
 
-        h -=_position_alpha
-        h +=_position_beta
-        if h > 80: h -= 80
-        elif h < 1: h += 80
+            h -=_position_alpha
+            h +=_position_beta
+            if h > 82: h -= 82
+            elif h < 1: h += 82
 
-        i = alpha_internal.number_to_letter(number=h)
-        if print_all_variables: print("i: " + str(i))
+            i = alpha_internal.number_to_letter(number=h)
+            if print_all_variables: print("i: " + str(i))
 
-        j = int(alpha_external.letter_to_number(letter=i))
-        if print_all_variables: print("j: " + str(j))
+            j = int(alpha_external.letter_to_number(letter=i))
+            if print_all_variables: print("j: " + str(j))
 
-        j -= 1
-        j += _position_alpha
-        if j > 80: j -= 80
-        elif j < 1: j += 80
+            j -= 1
+            j += _position_alpha
+            if j > 82: j -= 82
+            elif j < 1: j += 82
 
-        letter_up(button=3)
-        if number_of_letter_3 > 27: letter_up(button=2)
-        if number_of_letter_2 > 27: letter_up(button=1)
-        if number_of_letter_1 > 27:
-            number_of_letter_1 = 1
-            number_of_letter_2 = 1
-            number_of_letter_3 = 1
+            print("3: " + str(number_of_letter_3))
+            print("2: " + str(number_of_letter_2))
+            print("1: " + str(number_of_letter_1))
 
-        _out += number_to_letter(number=j)
-        value=(_out)
-        out.set(value=value)
+            number_of_letter_3_memory = number_of_letter_3
+            number_of_letter_2_memory = number_of_letter_2
+            number_of_letter_1_memory = number_of_letter_1
+
+            letter_up(button=3)
+            if number_of_letter_3_memory > 26:
+                letter_up(button=2)
+                print("if")
+            if number_of_letter_2_memory > 26: letter_up(button=1)
+            if number_of_letter_1_memory > 26:
+                number_of_letter_1 = 1
+                number_of_letter_2 = 1
+                number_of_letter_3 = 1
+
+            # _out += str(_position_reflector_memory) + " " + str(_position_beta_memory) + " " + str(_position_alpha_memory) + " "
+            _out += number_to_letter(number=j)
+            # _out += str(_position_alpha_memory) + str(_position_beta_memory) + "" + str(_position_reflector_memory) 
+            value=(_out)
+            out.set(value=value)
+        else: print('"' + str(letter) + '"' + " is not in the alphabet.")
 
 def reset():
     global number_of_letter_1
@@ -459,7 +475,7 @@ screen_3_3.grid(row=4, column=2, padx=20, pady=20)
 _input_text = Entry(window, font=("arial",15), width=50, textvariable="", borderwidth=3, background="white")
 _input_text.place(x=30, y=400)
 
-button_encript = Button(window, text="Encript", bg=color_boton, fg=cn, activebackground=actb, width=ancho_boton, height=alto_boton, command=lambda:encript(), cursor="hand2").place(x=30, y=430)
+button_encript = Button(window, text="Encript", bg=color_boton, fg=cn, activebackground=actb, width=ancho_boton, height=alto_boton, command=lambda:encript(), cursor="hand2").place(x=30, y=435)
 
 button_reset = Button(window, text="Reset", bg=color_boton, fg=cn, activebackground=actb, width=ancho_boton, height=alto_boton, command=lambda:reset(), cursor="hand2").place(x=350, y=160)
 
