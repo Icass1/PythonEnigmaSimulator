@@ -48,28 +48,27 @@ def letter_to_number(source, letter):
     return source.index(letter)
 
 def encript(message):
-
+    rotors_position = [None, None, None]
     # If the input has the initial letters of the rotors, remove them from the input and set them as the position of the rotors.
     if len(message) > 6:
         if message[0] in alphabet and message[1] == " " and message[2] in alphabet and message[3] == " " and message[4] in alphabet and message[5] == " ":
-            _position_rotor_1 = letter_to_number(letter=message[0], source=alphabet)
-            _position_rotor_2 = letter_to_number(letter=message[2], source=alphabet)
-            _position_reflector = letter_to_number(letter=message[4], source=alphabet)
+            rotors_position[0] = letter_to_number(letter=message[0], source=alphabet)
+            rotors_position[1] = letter_to_number(letter=message[2], source=alphabet)
+            rotors_position[2] = letter_to_number(letter=message[4], source=alphabet)
             message = message[6:len(message)]
         else:
-            _position_rotor_1 = randrange(len(alphabet)-1)
-            _position_rotor_2 = randrange(len(alphabet)-1)
-            _position_reflector = randrange(len(alphabet)-1)
+            rotors_position[0] = randrange(len(alphabet)-1)
+            rotors_position[1] = randrange(len(alphabet)-1)
+            rotors_position[2] = randrange(len(alphabet)-1)
     else:
-        _position_rotor_1 = randrange(len(alphabet)-1)
-        _position_rotor_2 = randrange(len(alphabet)-1)
-        _position_reflector = randrange(len(alphabet)-1)
+        rotors_position[0] = randrange(len(alphabet)-1)
+        rotors_position[1] = randrange(len(alphabet)-1)
+        rotors_position[2] = randrange(len(alphabet)-1)
 
-    rotors_position = [_position_rotor_1, _position_rotor_2, _position_reflector]
 
     # Write the initial position of the rotors in _out.
     _out = ""
-    _out += number_to_letter(source=alphabet, number=_position_rotor_1) + " " + number_to_letter(source=alphabet, number=_position_rotor_2) + " " + number_to_letter(source=alphabet, number=_position_reflector) + " "
+    _out += number_to_letter(source=alphabet, number=rotors_position[0]) + " " + number_to_letter(source=alphabet, number=rotors_position[1]) + " " + number_to_letter(source=alphabet, number=rotors_position[2]) + " "
     
     _max = len(alphabet) - 1
     _min = 0
@@ -79,15 +78,13 @@ def encript(message):
     for letter in message:
         if letter in alphabet:
             number = int(letter_to_number(source=alphabet, letter=letter))
-            number -= _position_rotor_1
+            number -= rotors_position[0]
             number += 1
 
             if number > _max: number -= _add_substract
             elif number < _min: number += _add_substract
 
             for k in range(2):
-                print(k)
-
                 _position_add = rotors_position[k]
                 _position_substract = rotors_position[k+1]
                 k *= 2
@@ -104,8 +101,8 @@ def encript(message):
             letter = number_to_letter(source=sources[5], number=number)
 
             number = int(letter_to_number(source=sources[6], letter=letter))
-            number += _position_reflector
-            number -= _position_rotor_2
+            number += rotors_position[2]
+            number -= rotors_position[1]
 
             if number > _max: number -= _add_substract
             elif number < _min: number += _add_substract
@@ -134,20 +131,20 @@ def encript(message):
 
         else: 
             print(letter + "is not in the alphabet")
-        """
-        _position_rotor_1 += 1
+        
+        rotors_position[0] = rotors_position[0] + 1
 
-        if _position_rotor_1 == len(alphabet):
-            _position_rotor_1 = 1
-            _position_rotor_2 += 1
+        if rotors_position[0] == len(alphabet):
+            rotors_position[0] = 1
+            rotors_position[1] = rotors_position[1] + 1
 
-        if _position_rotor_2 == len(alphabet):
-            _position_rotor_2 = 1
-            _position_reflector += 1
+        if rotors_position[1] == len(alphabet):
+            rotors_position[1] = 1
+            rotors_position[2] = rotors_position[2] + 1
             
-        if _position_reflector == len(alphabet):
-            _position_reflector = 1
-        """
+        if rotors_position[2] == len(alphabet):
+            rotors_position[2] = 1
+        
     print(_out)
 
 while True:
