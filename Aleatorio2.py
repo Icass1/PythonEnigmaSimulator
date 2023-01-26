@@ -17,6 +17,8 @@ long_alphabet =    ['☺', '☻', '♥', '♦', '♣', '♠', '•', '◘', '○
 '∩', '≡', '±', '≥', '≤', '⌠', '⌡', '÷', '≈', '°', '∙', '·', '√', 'ⁿ', '²', '■', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ']
 
 
+
+
 def _pop(index, list):
     _out = []
     for element in list:
@@ -26,75 +28,27 @@ def _pop(index, list):
     return _out
 
 def generata_pairs(alphabet):
-    print(len(alphabet))
-    list_1 = alphabet
-    list_2 = []
-    for k in list_1:
-        list_2.append("ą")
+    global list_pairs
+    _list = alphabet
 
-    characters_left = alphabet
-    for letter in list_1:
-        # print(letter)
+    list_pairs = []
+    while len(_list) != 0:
+        random_number = randrange(len(_list))
+        random_leter = _list[random_number]
 
-        if letter in list_2:
-            _index = list_2.index(letter)
-            list_2[list_1.index(letter)] = list_1[_index]
-            # print("if")
-        else:
-            # print("else")
-            try:
-                random_number = randrange(len(characters_left) - 1)
-            except: 
-                random_number = 0
 
-            random_letter = characters_left[random_number]
 
-            list_2[list_1.index(letter)] = random_letter
-        
-        try: characters_left = _pop(index=characters_left.index(letter), list=characters_left)
+        list_to_append = [_list[0], random_leter]
+        list_pairs.append(list_to_append)
+        _list = _pop(index=0, list=_list)
+
+        try: _list = _pop(index=_list.index(random_leter), list=_list)
         except: pass
-        for element in list_2:
-            if element in characters_left:
-                _index = characters_left.index(element)
-                characters_left = _pop(index=_index, list=characters_left)
-        
-        # print(list_1)
-        # print(list_2)
-        # print(characters_left)            
-        # print("\n")
-    # print(list_1)
-    # print("\n")
-    # print(list_2)
-    return list_1, list_2
+    
+    list_1
+    lsit
 
-def check_pairs(list_1, list_2):
-    if len(list_1) != len(list_2):
-        print("The length of the lists must be equal.")
-        return
-    for _index in range(0, len(list_1) - 1):
-        list_1_letter_1 = list_1[_index]
-        list_2_letter_1 = list_1[_index]
-        
-        list_1_letter_2 = list_1[list_2.index(list_1_letter_1)]
-        list_2_letter_2 = list_2[list_1.index(list_2_letter_1)]
-        print(list_1_letter_1)
-        print(list_2_letter_1)
-        print(list_1_letter_2)
-        print(list_2_letter_2)
+generata_pairs(alphabet=long_alphabet)
 
-list_1, list_2 = generata_pairs(alphabet=long_alphabet)
-
-valores = list_2
-repetido = []
-unico = []
-for x in valores:
-	if x not in unico:
-		unico.append(x)
-	else:
-		if x not in repetido:
-			repetido.append(x)
-print("repetido: " + str(repetido))
-
-print(list_1)
-print("\n")
-print(list_2)
+print(list_pairs)
+print(len(list_pairs))
