@@ -79,7 +79,7 @@ def generate_pairs(alphabet):
 def create_lists(alphabet):
 
     
-    rotors = 10
+    rotors = 100
 
     list_1, list_2 = generate_pairs(alphabet=alphabet)
     
