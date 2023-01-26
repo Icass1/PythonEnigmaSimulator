@@ -91,3 +91,4 @@ print("_rotor_reflector_external = {}".format(str(list_1)))
 print("\n")
 print("_rotor_reflector_internal = {}".format(str(list_2)))
 
+while True: pass
