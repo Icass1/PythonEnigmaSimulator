@@ -59,7 +59,7 @@ def encript(message):
                 counter_for_position_rotors_input += 1
             if message[k+1] == " ":
                 counter_for_position_rotors_input += 1
-        if counter_for_position_rotors_input == 6:
+        if counter_for_position_rotors_input == (len(sources)-1):
             
             for k in range(int(len(sources)/2)): rotors_position[k] = letter_to_number(letter=message[k*2], source=alphabet)
             message = message[(len(sources) - 1):len(message)]
@@ -69,37 +69,15 @@ def encript(message):
     else:
         for k in range(int(len(sources)/2)): rotors_position[k] = randrange(len(alphabet)-1)
 
-
-
-
-
-
-
-
-
-
-    """
-    # If the input has the initial letters of the rotors, remove them from the input and set them as the position of the rotors.
-    if len(message) > (len(sources) - 1):
-        if message[0] in alphabet and message[1] == " " and message[2] in alphabet and message[3] == " " and message[4] in alphabet and message[5] == " ":
-            rotors_position[0] = letter_to_number(letter=message[0], source=alphabet)
-            rotors_position[1] = letter_to_number(letter=message[2], source=alphabet)
-            rotors_position[2] = letter_to_number(letter=message[4], source=alphabet)
-            message = message[(len(sources) - 1):len(message)]
-        else:
-            rotors_position[0] = randrange(len(alphabet)-1)
-            rotors_position[1] = randrange(len(alphabet)-1)
-            rotors_position[2] = randrange(len(alphabet)-1)
-    else:
-        rotors_position[0] = randrange(len(alphabet)-1)
-        rotors_position[1] = randrange(len(alphabet)-1)
-        rotors_position[2] = randrange(len(alphabet)-1)
-    """
-
     # Write the initial position of the rotors in _out.
     _out = ""
-    _out += number_to_letter(source=alphabet, number=rotors_position[0]) + " " + number_to_letter(source=alphabet, number=rotors_position[1]) + " " + number_to_letter(source=alphabet, number=rotors_position[2]) + " "
+    # _out += number_to_letter(source=alphabet, number=rotors_position[0]) + " " + number_to_letter(source=alphabet, number=rotors_position[1]) + " " + number_to_letter(source=alphabet, number=rotors_position[2]) + " "
     
+    for k in range(int(len(sources)/2)):
+        _out += number_to_letter(source=alphabet, number=rotors_position[k]) + " "
+
+
+
     _max = len(alphabet) - 1
     _min = 0
     _add_substract = len(alphabet)
@@ -175,9 +153,9 @@ def encript(message):
         if rotors_position[2] == len(alphabet):
             rotors_position[2] = 1
         
-    print(_out)
+    return _out
 
 while True:
     _input = input("Enter message: ")
     message_encripted = encript(message=_input)
-
+    print(message_encripted)
