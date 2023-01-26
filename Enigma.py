@@ -1,7 +1,7 @@
 from tkinter import *
 from time import sleep
 
-print_all_variables = True
+print_all_variables = False
 
 window = Tk()
 
@@ -16,9 +16,10 @@ actb="gray75"
 ancho_boton=9
 alto_boton=3
 
-number_of_letter_1 = 0
-number_of_letter_2 = 0
-number_of_letter_3 = 0
+# 
+number_of_letter_1 = 1
+number_of_letter_2 = 1
+number_of_letter_3 = 1
 
 input_text_1_1 = StringVar()
 input_text_1_2 = StringVar()
@@ -53,9 +54,9 @@ _reflector_rotor_external = ("A","B","C","D","E","F","G","H","I","J","K","L","M"
 _reflector_rotor_internal = ("y","+","u","a","P","M","í","*","É","v","1","T","F","Q","q","8","E","N"," ","k","L","3","n","X","W","c","h","D","x","Y","-","Ú",",","m","Z","Í","w","S","4","g","V","é","Ó","7","Ñ","6","t","s","C","J","j","b","A",".","/","I","i","o","e","ó","ñ","G","á","9","K","5","U","l","2","r","p","O","ú","z","f","R","d","B","H","Á","?","¿")
 
 def number_to_letter(source, number):
-    number -=1
+    number -= 1
     if source == alphabet_for_position_rotor:
-        number -=1
+        
         if number < 0: number += 27
         if number > 26: number -= 27
         number_to_letter_out = source[number]
@@ -86,7 +87,7 @@ def letter_up(button):
     global number_of_letter_3
 
     if button == 1:
-        number_of_letter_1 -= 1
+        number_of_letter_1 += 1
         if number_of_letter_1 > 27: number_of_letter_1 -= 27
         if number_of_letter_1 < 1: number_of_letter_1 += 27
 
@@ -103,7 +104,7 @@ def letter_up(button):
         input_text_1_3.set(value_3)
 
     if button == 2:
-        number_of_letter_2 -= 1
+        number_of_letter_2 += 1
         if number_of_letter_2 > 27: number_of_letter_2 -= 27
         if number_of_letter_2 < 1: number_of_letter_2 += 27
 
@@ -120,7 +121,7 @@ def letter_up(button):
         input_text_2_3.set(value_3)
 
     if button == 3:
-        number_of_letter_3 -= 1
+        number_of_letter_3 += 1
         if number_of_letter_3 > 27: number_of_letter_3 -= 27
         if number_of_letter_3 < 1: number_of_letter_3 += 27
 
@@ -142,7 +143,7 @@ def letter_down(button):
     global number_of_letter_2
     global number_of_letter_3
     if button == 1:        
-        number_of_letter_1 += 1
+        number_of_letter_1 -= 1
         if number_of_letter_1 > 27: number_of_letter_1 -= 27
         if number_of_letter_1 < 1: number_of_letter_1 += 27
 
@@ -159,13 +160,13 @@ def letter_down(button):
         input_text_1_3.set(value_3)
 
     if button == 2:        
-        number_of_letter_2 += 1
+        number_of_letter_2 -= 1
         if number_of_letter_2 > 27: number_of_letter_2 -= 27
         if number_of_letter_2 < 1: number_of_letter_2 += 27
 
-        letter_1 = number_to_letter(source=alphabet_for_position_rotor, number = number_of_letter_2+1)
+        letter_1 = number_to_letter(source=alphabet_for_position_rotor, number = number_of_letter_2 + 1)
         letter_2 = number_to_letter(source=alphabet_for_position_rotor, number = number_of_letter_2)
-        letter_3 = number_to_letter(source=alphabet_for_position_rotor, number = number_of_letter_2-1)
+        letter_3 = number_to_letter(source=alphabet_for_position_rotor, number = number_of_letter_2 - 1)
 
         value_1=(letter_1)
         value_2=(letter_2)
@@ -176,13 +177,13 @@ def letter_down(button):
         input_text_2_3.set(value_3)   
 
     if button == 3:
-        number_of_letter_3 += 1
+        number_of_letter_3 -= 1
         if number_of_letter_3 > 27: number_of_letter_3 -= 27
         if number_of_letter_3 < 1: number_of_letter_3 += 27
 
-        letter_1 = number_to_letter(source=alphabet_for_position_rotor, number=number_of_letter_3+1)
+        letter_1 = number_to_letter(source=alphabet_for_position_rotor, number=number_of_letter_3 + 1)
         letter_2 = number_to_letter(source=alphabet_for_position_rotor, number=number_of_letter_3)
-        letter_3 = number_to_letter(source=alphabet_for_position_rotor, number=number_of_letter_3-1)
+        letter_3 = number_to_letter(source=alphabet_for_position_rotor, number=number_of_letter_3 - 1)
 
         value_1=(letter_1)
         value_2=(letter_2)
@@ -202,9 +203,9 @@ def reset():
     number_of_letter_1 = 0
     number_of_letter_2 = 0
     number_of_letter_3 = 0
-    letter_down(button=1)
-    letter_down(button=2)
-    letter_down(button=3)
+    letter_up(button=1)
+    letter_up(button=2)
+    letter_up(button=3)
     
     while counter_invalid_letter > 0:
         counter_invalid_letter -= 1
@@ -219,10 +220,6 @@ def encript():
     global number_of_letter_3
     global out
     global counter_invalid_letter
-
-    print("number_of_letter_1: " + str(number_of_letter_1))
-    print("number_of_letter_2: " + str(number_of_letter_2))
-    print("number_of_letter_3: " + str(number_of_letter_3))   
 
     _input = _input_text.get()
     _position_entry_error = 0
@@ -316,11 +313,11 @@ def encript():
             number_of_letter_2_memory = number_of_letter_2
             number_of_letter_1_memory = number_of_letter_1
 
-            letter_down(button=3)
+            letter_up(button=3)
             if number_of_letter_3_memory > 26:
-                letter_down(button=2)
+                letter_up(button=2)
             
-            if number_of_letter_2_memory > 26: letter_down(button=1)
+            if number_of_letter_2_memory > 26: letter_up(button=1)
             if number_of_letter_1_memory > 26:
                 number_of_letter_1 = 1
                 number_of_letter_2 = 1
@@ -335,13 +332,27 @@ def encript():
             _position_entry_error += 1
             listbox.insert(_position_entry_error, error_text)
 
-frm_1 = Frame(window, bg="black", height=244, width=73)
+frm_1 = Frame(window, bg="white", height=244, width=73)
 frm_1.place(x=13, y=65)
-set_mousewheel(frm_1, lambda e: letter_up(button=1))
+set_mousewheel(widget=frm_1, command=lambda e: letter_up(button=1))
 
-letter_down(button=1)
-letter_down(button=2)
-letter_down(button=3)
+frm_2 = Frame(window, bg="white", height=244, width=73)
+frm_2.place(x=112, y=65)
+set_mousewheel(frm_2, lambda e: letter_up(button=2))
+
+frm_2 = Frame(window, bg="white", height=244, width=73)
+frm_2.place(x=211, y=65)
+set_mousewheel(frm_2, lambda e: letter_up(button=3))
+
+input_text_1_1.set("B")
+input_text_1_2.set("A")
+input_text_1_3.set("Z")
+input_text_2_1.set("B")
+input_text_2_2.set("A")
+input_text_2_3.set("Z")
+input_text_3_1.set("B")
+input_text_3_2.set("A")
+input_text_3_3.set("Z")
 
 button_up_1 = Button(window,text="UP",bg=color_boton,fg=cn,activebackground=actb,width=ancho_boton,height=alto_boton, command=lambda:letter_up(button=1),cursor="hand2").grid(row=1, column=0, padx=13, pady=10)
 button_down_1 = Button(window,text="DOWN",bg=color_boton,fg=cn,activebackground=actb,width=ancho_boton,height=alto_boton, command=lambda:letter_down(button=1),cursor="hand2").grid(row=5, column=0, padx=13, pady=10)
