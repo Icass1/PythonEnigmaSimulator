@@ -70,7 +70,7 @@ def generate_pairs(alphabet):
 
 list_1, list_2 = generate_pairs(alphabet=long_alphabet)
 
-rotors = 5
+rotors = 3
 print("alphabet =                  {}".format(str(long_alphabet)))
 print("\n")
 shuffle(long_alphabet)
